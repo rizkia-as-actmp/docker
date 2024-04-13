@@ -1,7 +1,7 @@
-version: "3.7"
+version: "3.8"
 services:
   mysql:
-    image: mysql:8.2.0
+    image: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 21204444
@@ -10,17 +10,28 @@ services:
     ports:
       - 3306:3306
 
-  phpmyadmin:
-    image: phpmyadmin:5.2.1-apache
-    ports:
-      - 8080:80
+  adminer:
+    image: adminer
     restart: always
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: 21204444
-    depends_on:
-      - mysql
+    ports:
+      - 8080:8080
+
+  # server : mysql
+  # user : root
+  # pass : 21204444
+  # db : just throw anything
+
+        # phpmyadmin:
+        #   image: phpmyadmin:5.2.1-apache
+        #   ports:
+        #     - 8080:80
+        #   restart: always
+        #   environment:
+        #     PMA_HOST: mysql
+        #     PMA_USER: root
+        #     PMA_PASSWORD: 21204444
+        #   depends_on:
+        #     - mysql
 
 volumes:
   mysql-data:
